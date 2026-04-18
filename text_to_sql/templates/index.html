@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to SQL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Text to SQL</h1>
+        <p class="subtitle">Convert plain English to PostgreSQL queries instantly</p>
+
+        <div class="card">
+            <label>Describe what you want:</label>
+            <textarea id="inputText" placeholder="e.g. Get all users who signed up in the last 30 days and have made at least one purchase"></textarea>
+            <button id="convertBtn" onclick="convert()">Generate SQL</button>
+        </div>
+
+        <div class="card output-card" id="outputCard" style="display:none;">
+            <label>Generated PostgreSQL Query:</label>
+            <pre id="sqlOutput"></pre>
+            <button class="copy-btn" onclick="copySQL()">Copy SQL</button>
+            <span id="copyMsg" style="display:none;">✅ Copied!</span>
+        </div>
+    </div>
+
+    <script>
+        async function convert() {
+            const text = document.getElementById("inputText").value.trim();
+            if (!text) return alert("Please enter some text!");
+
+            const btn = document.getElementById("convertBtn");
+            btn.textContent = "Generating...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch("/convert", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    alert("Error: " + data.error);
+                } else {
+                    document.getElementById("sqlOutput").textContent = data.sql;
+                    document.getElementById("outputCard").style.display = "block";
+                }
+
+            } catch (err) {
+                alert("Something went wrong!");
+            } finally {
+                btn.textContent = "Generate SQL";
+                btn.disabled = false;
+            }
+        }
+
+        function copySQL() {
+            const sql = document.getElementById("sqlOutput").textContent;
+            navigator.clipboard.writeText(sql).then(() => {
+                const msg = document.getElementById("copyMsg");
+                msg.style.display = "inline";
+                setTimeout(() => msg.style.display = "none", 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>

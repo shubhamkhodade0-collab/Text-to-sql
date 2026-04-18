@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 750px;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #7c3aed;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin: 10px 0 30px;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid #334155;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #e2e8f0;
+    padding: 12px;
+    font-size: 1rem;
+    resize: vertical;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #7c3aed;
+}
+
+button {
+    margin-top: 16px;
+    width: 100%;
+    padding: 14px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #6d28d9;
+}
+
+button:disabled {
+    background: #4c1d95;
+    cursor: not-allowed;
+}
+
+pre {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    color: #34d399;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.copy-btn {
+    background: #0f172a;
+    border: 1px solid #7c3aed;
+    color: #7c3aed;
+    margin-top: 12px;
+}
+
+.copy-btn:hover {
+    background: #7c3aed;
+    color: white;
+}
+
+#copyMsg {
+    margin-left: 12px;
+    color: #34d399;
+}
