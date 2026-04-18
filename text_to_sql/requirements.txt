@@ -1,4 +1,5 @@
 flask
 anthropic
 gunicorn
+groq
 python-dotenv
